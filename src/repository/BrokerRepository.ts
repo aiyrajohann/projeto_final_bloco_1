@@ -16,7 +16,7 @@ export class BrokerRepository implements IRepository<Broker> {
     }
 
     public findAll(): Broker[] {
-        return [...this.brokers]; // Retorna uma cópia do array
+        return [...this.brokers];
     }
 
    

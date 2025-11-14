@@ -15,19 +15,10 @@ export class PropertyRepository implements IRepository<Property> {
         return this.properties.find(property => property.id === id);
     }
 
-    /**
-     * Lista todos os imóveis
-     * @returns Array de imóveis
-     */
     public findAll(): Property[] {
-        return [...this.properties]; // Retorna uma cópia do array
+        return [...this.properties];
     }
 
-    /**
-     * Atualiza um imóvel existente
-     * @param item Imóvel com dados atualizados
-     * @returns Imóvel atualizado
-     */
     public update(item: Property): Property {
         const index = this.properties.findIndex(property => property.id === item.id);
         if (index !== -1) {
@@ -36,11 +27,6 @@ export class PropertyRepository implements IRepository<Property> {
         return item;
     }
 
-    /**
-     * Remove um imóvel por ID
-     * @param id ID do imóvel a ser removido
-     * @returns true se removido, false caso contrário
-     */
     public delete(id: number): boolean {
         const index = this.properties.findIndex(property => property.id === id);
         if (index !== -1) {
@@ -50,19 +36,10 @@ export class PropertyRepository implements IRepository<Property> {
         return false;
     }
 
-    /**
-     * Busca imóveis por corretor (método específico)
-     * @param brokerId ID do corretor
-     * @returns Array de imóveis do corretor
-     */
     public findByBroker(brokerId: number): Property[] {
         return this.properties.filter(property => property.brokerId === brokerId);
     }
 
-    /**
-     * Busca imóveis disponíveis (sem corretor)
-     * @returns Array de imóveis disponíveis
-     */
     public findAvailable(): Property[] {
         return this.properties.filter(property => !property.temCorretor());
     }
