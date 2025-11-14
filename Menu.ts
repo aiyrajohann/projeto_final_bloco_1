@@ -38,43 +38,43 @@ export function main(): void {
     switch (opcao) {
       case 1:
         console.log(colors.fg.whitestrong, "\n\nCadastrar corretor\n\n", colors.reset);
-        console.log(colors.fg.yellow, "Funcionalidade será implementada na branch de Corretores.", colors.reset);
+        console.log(colors.fg.yellow, "Funcionalidade será implementada na branch Controller.", colors.reset);
         keyPress();
         break;
 
       case 2:
         console.log(colors.fg.whitestrong, "\n\nListar corretores\n\n", colors.reset);
-        console.log(colors.fg.yellow, "Funcionalidade será implementada na branch de Corretores.", colors.reset);
+        console.log(colors.fg.yellow, "Funcionalidade será implementada na branch Controller.", colors.reset);
         keyPress();
         break;
 
       case 3:
         console.log(colors.fg.whitestrong, "\n\nCadastrar imóvel\n\n", colors.reset);
-        console.log(colors.fg.yellow, "Funcionalidade será implementada na branch de Imóveis.", colors.reset);
+        console.log(colors.fg.yellow, "Funcionalidade será implementada na branch Controller.", colors.reset);
         keyPress();
         break;
 
       case 4:
         console.log(colors.fg.whitestrong, "\n\nListar imóveis\n\n", colors.reset);
-        console.log(colors.fg.yellow, "Funcionalidade será implementada na branch de Imóveis.", colors.reset);
+        console.log(colors.fg.yellow, "Funcionalidade será implementada na branch Controller.", colors.reset);
         keyPress();
         break;
 
       case 5:
         console.log(colors.fg.whitestrong, "\n\nAtribuir corretor a imóvel\n\n", colors.reset);
-        console.log(colors.fg.yellow, "Funcionalidade será implementada na branch de Atribuição.", colors.reset);
+        console.log(colors.fg.yellow, "Funcionalidade será implementada na branch Controller.", colors.reset);
         keyPress();
         break;
 
       case 6:
         console.log(colors.fg.whitestrong, "\n\nVender imóvel\n\n", colors.reset);
-        console.log(colors.fg.yellow, "Funcionalidade será implementada na branch de Vendas.", colors.reset);
+        console.log(colors.fg.yellow, "Funcionalidade será implementada na branch Controller.", colors.reset);
         keyPress();
         break;
 
       case 7:
         console.log(colors.fg.whitestrong, "\n\nRelatório de comissões\n\n", colors.reset);
-        console.log(colors.fg.yellow, "Funcionalidade será implementada na branch de Relatórios.", colors.reset);
+        console.log(colors.fg.yellow, "Funcionalidade será implementada na branch Controller.", colors.reset);
         keyPress();
         break;
 
