@@ -46,7 +46,7 @@ export class Broker extends Model {
         console.log(`ID: ${this.id}`);
         console.log(`Nome: ${this._name}`);
         console.log(`Email: ${this._email || "Não informado"}`);
-        console.log(`Comissão Total: R$ ${this._totalCommission.toFixed(2)}`);
+        console.log(`Comissão Total: R$ ${this._totalCommission}`);
         console.log("*****************************************************");
     }
     public validar(): boolean {

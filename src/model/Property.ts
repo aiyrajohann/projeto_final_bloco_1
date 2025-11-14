@@ -50,9 +50,9 @@ export class Property extends Model {
         console.log("*****************************************************");
         console.log(`ID: ${this.id}`);
         console.log(`Descrição: ${this._description}`);
-        console.log(`Preço: R$ ${this._price.toFixed(2)}`);
+        console.log(`Preço: R$ ${this._price}`);
         console.log(`Corretor ID: ${this._brokerId}`);
-        console.log(`Comissão: R$ ${this.calcularComissao().toFixed(2)}`);
+        console.log(`Comissão: R$ ${this.calcularComissao()}`);
         console.log("*****************************************************");
     }
 

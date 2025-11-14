@@ -150,7 +150,7 @@ function cadastrarImovel(): void {
 
   try {
     const descricao = readlinesync.question("Digite a descricao do imovel: ");
-    const preco = readlinesync.questionFloat("Digite o preco do imovel: ");
+    const preco = readlinesync.questionInt("Digite o preco do imovel: ");
     const corretorId = readlinesync.questionInt("Digite o ID do corretor responsavel: ");
 
     const property = propertyController.cadastrar(descricao, preco, corretorId);
@@ -233,12 +233,12 @@ function relatorioComissoes(): void {
     console.log(colors.fg.cyan, "Corretores ordenados por comissão (maior para menor):\n", colors.reset);
     brokers.forEach((broker, index) => {
       console.log(`${index + 1}º - ${broker.name}`);
-      console.log(`    Comissão Total: R$ ${broker.totalCommission.toFixed(2)}`);
+      console.log(`    Comissão Total: R$ ${broker.totalCommission}`);
       console.log("-----------------------------------");
     });
 
     const totalComissoes = brokers.reduce((sum, b) => sum + b.totalCommission, 0);
-    console.log(colors.fg.greenstrong, `\nTotal de comissões: R$ ${totalComissoes.toFixed(2)}`, colors.reset);
+    console.log(colors.fg.greenstrong, `\nTotal de comissões: R$ ${totalComissoes}`, colors.reset);
     console.log(colors.fg.greenstrong, `Total de corretores: ${brokers.length}`, colors.reset);
   } catch (error: any) {
     console.log(colors.fg.red, `\nErro: ${error.message}`, colors.reset);
