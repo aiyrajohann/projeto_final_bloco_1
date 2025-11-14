@@ -3,9 +3,9 @@ import { Model } from "./Model";
 export class Property extends Model {
     private _description: string;
     private _price: number;
-    private _brokerId: number | undefined;
+    private _brokerId: number;
 
-    constructor(id: number, description: string, price: number, brokerId?: number) {
+    constructor(id: number, description: string, price: number, brokerId: number) {
         super(id); 
         this._description = description;
         this._price = price;
@@ -28,11 +28,11 @@ export class Property extends Model {
         this._price = value;
     }
 
-    public get brokerId(): number | undefined {
+    public get brokerId(): number {
         return this._brokerId;
     }
 
-    public set brokerId(value: number | undefined) {
+    public set brokerId(value: number) {
         this._brokerId = value;
     }
 
@@ -41,7 +41,7 @@ export class Property extends Model {
     }
 
     public temCorretor(): boolean {
-        return this._brokerId !== undefined;
+        return true; 
     }
 
     public visualizar(): void {
@@ -51,13 +51,13 @@ export class Property extends Model {
         console.log(`ID: ${this.id}`);
         console.log(`Descrição: ${this._description}`);
         console.log(`Preço: R$ ${this._price.toFixed(2)}`);
-        console.log(`Corretor ID: ${this._brokerId || "Não atribuído"}`);
+        console.log(`Corretor ID: ${this._brokerId}`);
         console.log(`Comissão: R$ ${this.calcularComissao().toFixed(2)}`);
         console.log("*****************************************************");
     }
 
     public validar(): boolean {
-        
+
         const descricaoValida = !!(this._description && this._description.trim().length > 0);
         const precoValido = this._price > 0;
         

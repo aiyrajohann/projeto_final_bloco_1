@@ -50,8 +50,8 @@ export class Broker extends Model {
         console.log("*****************************************************");
     }
     public validar(): boolean {
-        const nomeValido = !!(this._name && this._name.trim().length > 0);
-        const emailValido = !this._email || this._email.trim() === "" || this._email.includes("@");
+        const nomeValido = !!(this._name && this._name.trim().length > 3);
+        const emailValido = !this._email || this._email.includes("@");
         
         return nomeValido && emailValido;
     }
