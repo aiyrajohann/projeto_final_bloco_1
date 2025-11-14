@@ -30,6 +30,13 @@ export class BrokerController {
         }
 
         const broker = new Broker(0, name.trim(), email.trim());
+        
+        // Embora os dados já tenham sido validados na controller,
+       // quis adicionar uma camada extra de segurança na validação do Model
+        if (!broker.validar()) {
+            throw new ValidationException("Dados do corretor inválidos!");
+        }
+
         const savedBroker = this.repository.create(broker);
         return savedBroker;
     }
@@ -71,6 +78,12 @@ export class BrokerController {
 
         broker.name = name.trim();
         broker.email = email.trim();
+
+        // Embora os dados já tenham sido validados na controller,
+       // quis adicionar uma camada extra de segurança na validação do Model
+        if (!broker.validar()) {
+            throw new ValidationException("Dados do corretor inválidos!");
+        }
 
         return this.repository.update(broker);
     }

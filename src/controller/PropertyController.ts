@@ -31,6 +31,12 @@ export class PropertyController {
 
         const property = new Property(0, description.trim(), price, brokerId);
 
+        // Embora os dados já tenham sido validados na controller,
+       // quis adicionar uma camada extra de segurança na validação do Model
+        if (!property.validar()) {
+            throw new ValidationException("Dados do imóvel inválidos!");
+        }
+
         const savedProperty = this.repository.create(property);
 
         const comissao = savedProperty.calcularComissao();
@@ -74,6 +80,20 @@ export class PropertyController {
 
         if (!deleted) {
             throw new BusinessException("Erro ao deletar imóvel!");
+        }
+    }
+
+    public listarPorPreco(ordem: 'crescente' | 'decrescente' = 'crescente'): Property[] {
+        const properties = this.repository.findAll();
+
+        if (properties.length === 0) {
+            throw new NotFoundException("Nenhum imóvel cadastrado!");
+        }
+
+        if (ordem === 'crescente') {
+            return properties.sort((a, b) => a.price - b.price);
+        } else {
+            return properties.sort((a, b) => b.price - a.price);
         }
     }
 }
