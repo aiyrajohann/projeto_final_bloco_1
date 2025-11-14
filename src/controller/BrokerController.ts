@@ -99,6 +99,18 @@ export class BrokerController {
         return this.repository.update(broker);
     }
 
+    public atualizarComissao(id: number, diferenca: number): Broker {
+        const broker = this.buscarPorId(id);
+        const novaComissao = broker.totalCommission + diferenca;
+        
+        if (novaComissao < 0) {
+            throw new ValidationException("A comissão não pode ficar negativa!");
+        }
+        
+        broker.totalCommission = novaComissao;
+        return this.repository.update(broker);
+    }
+
     public listarPorComissao(): Broker[] {
         const brokers = this.repository.findAll();
         

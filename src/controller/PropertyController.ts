@@ -69,12 +69,45 @@ export class PropertyController {
         return property;
     }
 
+    public atualizar(id: number, description: string, price: number): Property {
+        const property = this.buscarPorId(id);
+
+        if (!description || description.trim().length === 0) {
+            throw new ValidationException("A descrição não pode ser vazia!");
+        }
+
+        if (price <= 0) {
+            throw new ValidationException("O preço deve ser maior que zero!");
+        }
+
+        // Guarda a comissão antiga antes de atualizar o preço
+        const comissaoAntiga = property.calcularComissao();
+
+        property.description = description.trim();
+        property.price = price;
+
+        // Embora os dados já tenham sido validados na controller,
+       // quis adicionar uma camada extra de segurança na validação do Model
+        if (!property.validar()) {
+            throw new ValidationException("Dados do imóvel inválidos!");
+        }
+
+        // Calcula a nova comissão e ajusta a diferença no corretor
+        const comissaoNova = property.calcularComissao();
+        const diferenca = comissaoNova - comissaoAntiga;
+
+        if (diferenca !== 0) {
+            this.brokerController.atualizarComissao(property.brokerId, diferenca);
+        }
+
+        return this.repository.update(property);
+    }
+
     public deletar(id: number): void {
         const property = this.buscarPorId(id);
 
         const comissao = property.calcularComissao();
-        const corretor = this.brokerController.buscarPorId(property.brokerId);
-        corretor.totalCommission -= comissao;
+        this.brokerController.atualizarComissao(property.brokerId, -comissao);
 
         const deleted = this.repository.delete(id);
 

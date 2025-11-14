@@ -25,6 +25,7 @@ export function main(): void {
     console.log("         6 - Atualizar corretor                      ");
     console.log("         7 - Deletar imóvel                          ");
     console.log("         8 - Relatório de comissões                  ");
+    console.log("         9 - Atualizar imóvel                        ");
     console.log("         0 - Sair                                    ");
     console.log("                                                     ");
     console.log("*****************************************************");
@@ -72,6 +73,10 @@ export function main(): void {
 
       case 8:
         relatorioComissoes();
+        break;
+
+      case 9:
+        atualizarImovel();
         break;
 
       default:
@@ -197,6 +202,31 @@ function buscarImovelPorId(): void {
 
   keyPress();
 }
+
+function atualizarImovel(): void {
+  console.log(colors.fg.whitestrong, "\n\nAtualizar Imóvel\n\n", colors.reset);
+
+  try {
+    const id = readlinesync.questionInt("Digite o ID do imovel: ");
+
+    const property = propertyController.buscarPorId(id);
+    console.log(colors.fg.cyan, "\nImóvel atual:", colors.reset);
+    property.visualizar();
+
+    console.log("\nDigite os novos dados:");
+    const descricao = readlinesync.question("Descricao: ");
+    const preco = readlinesync.questionInt("Preco: ");
+
+    const updated = propertyController.atualizar(id, descricao, preco);
+    console.log(colors.fg.greenstrong, "\nImóvel atualizado com sucesso!", colors.reset);
+    updated.visualizar();
+  } catch (error: any) {
+    console.log(colors.fg.red, `\nErro: ${error.message}`, colors.reset);
+  }
+
+  keyPress();
+}
+
 
 function deletarImovel(): void {
   console.log(colors.fg.whitestrong, "\n\nDeletar Imóvel\n\n", colors.reset);
